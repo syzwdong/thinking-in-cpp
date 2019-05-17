@@ -1,0 +1,21 @@
+断言
+2-2-assert.cpp
+<cassert> assert()
+#ifdef NEDBUG
+    #define assert(cond) ((void)0)
+#else
+    void assertImpl(const char *, const char *, long);
+    #define assert(cond) \
+        ((cond) ? (void)0 : assertImpl(???))
+#endif
+关闭/开启断言 #define NEDBUG  / #undef NEDBUG 并重新 #include <cassert>
+
+使用C++自动单元测试工具
+
+调试技术
+2-2-debug.cpp
+用于代码跟踪的宏
+    #define TRACE(ARG) cout << #ARG << endl; ARG
+    #define D(a) cout << #a "=[" << a << "]" << endl;
+跟踪文件 将cout的输出放入文件
+发现内存泄露 跟踪new 和 delete
