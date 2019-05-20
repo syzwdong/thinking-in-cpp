@@ -1,7 +1,7 @@
 用构造函数确保初始化 constructor
 用析构函数确保清除 destructor
 
-1-5-init.cpp
+1-6-init.cpp
 
 聚合初始化
 int b[6] = { 0 }; 其余元素默认为0
