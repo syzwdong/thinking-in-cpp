@@ -1,0 +1,53 @@
+应该完全用const取代#define的值替代
+
+C++中的const默认为内部连接
+定义一个const变量必须赋一个值给它，除非用extern做了说明
+const int a = 1;
+extern const int b;
+C++要求一个const定义时进行初始化的原因：把定义和声明区别开来
+
+在C++中，是否为const变量创建内存空间取决于对它如何使用
+
+指向const的指针 下面两者等价
+const int *p;
+int const *p;
+
+const指针
+int * const p;
+
+const int f();
+int i = f(); //可以
+按值返回一个内建类型时，应该去掉const，以免混淆
+当处理自定义类型时，按值返回常量很重要，要求返回值不能是一个左值
+对于内建类型的函数返回值，编译器已经不让它成为一个左值，因此没必要使用const
+
+1-8-const.cpp
+
+编译器使所有的临时量自动地成为const
+
+传递地址给函数，尽可能用const修饰它
+
+传递一个参数时，首先选用const &
+
+把一个临时对象传递给接受const & 的函数是可能的
+
+构造函数初始化列表
+给const成员变量赋值
+
+编译期间类里的常量
+static const
+enum hack 无标记enum
+
+const成员函数(const是函数标识符的一部分)
+按位const 与 按逻辑const(按成员const) 前者对象的每个位映像都是固定的，后者可以以成员为单位进行改变
+有两种由内部const成员函数改变数据成员的方法
+强制转换常量性
+mutable
+1-8-const2.cpp
+1-8-const3.cpp
+
+volatile
+在编译器认识的范围外，这个数据可以被改变
+const volatile 不能被客户程序员改变，但可通过外部的代理程序改变
+
+const/volatile c-v限定符
