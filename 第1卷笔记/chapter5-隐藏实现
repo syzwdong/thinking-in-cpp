@@ -1,0 +1,13 @@
+C++的访问控制
+public
+private
+protected
+
+友元 friend
+显示允许不属于当前struct成员函数访问struct中私有的数据
+可以把一个全局函数、另一个结构的成员函数、另一个结构设为friend
+
+class
+class成员默认是private, struct成员默认是public
+
+所有的访问保护检查都是由编译器来完成的，在运行期间不再检查

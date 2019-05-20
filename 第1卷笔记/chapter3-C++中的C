@@ -1,0 +1,63 @@
+C++中，函数定义的参数表中可以使用未命名的参数
+在C++中应避免使用C的可变参数列表
+
+goto 避免滥用
+long val = 0;
+for(int i = 0; i < 1000; i++){
+    for(int j = 0; j < 100; j+=10){
+        val = i * j;
+        if(val > 47000)
+            goto buttom;
+    }
+}
+buttom:
+cout << val << endl;
+
+指针和引用 允许函数去改变外部对象
+
+实时定义变量
+for(int i = 0; i < 10; i++)
+if(char c = ch == 'a') //==优先级高于=，c为0或1
+while((char c = cin.get()) != 'q) 不允许插入括号
+
+全局变量
+局部变量 自动变量
+静态变量
+外部变量
+常量 C++中常量必须有初始值
+volatile变量 
+
+显示转换
+static_cast 静态转换
+const_cast 常量转换
+reinterpret_cast 重解释转换
+dynamic_cast 动态转换
+
+别名
+typedef 原类型名 别名
+typedef int* intp
+intp a, b;
+
+<cstdlib>
+将字符数组转换为相应的数值类型
+int atoi(const char *str)
+long int atol(const char *str)
+double atof(const char *str)
+
+定义函数指针
+void (*f) (); 
+函数指针,指向一个接受()返回void的函数
+void * (*(*f)(int)) [10]; 
+函数指针，指向一个接受(int)返回一个指针的函数，这个返回的指针指向含有10个void*的数组
+float (*(*f)(int, int, float)) (int); 
+函数指针，指向一个接受(int, int, float)返回指针的函数，这个返回的指针指向另一个函数指针，指向的函数接受(int)返回float
+typedef double (*(*(*f)())[10]) ();
+f是一个函数指针，指向的函数接受(),返回一个指针，这个指针指向含有10个指向函数指针数组，这些函数接受()返回double
+int (*(*f())[10]) ();
+函数定义，接受()返回函数指针，该指针指向函数10个函数指针的数组，这些函数接受()返回int
+
+make:管理分段编译
+cpp = g++ -std=c++11
+all:main
+main:main.cpp 
+    $(cpp) main.cpp -o main

@@ -1,14 +1,14 @@
 断言
 2-2-assert.cpp
 <cassert> assert()
-#ifdef NEDBUG
+#ifdef NDEBUG
     #define assert(cond) ((void)0)
 #else
     void assertImpl(const char *, const char *, long);
     #define assert(cond) \
         ((cond) ? (void)0 : assertImpl(???))
 #endif
-关闭/开启断言 #define NEDBUG  / #undef NEDBUG 并重新 #include <cassert>
+关闭/开启断言 #define NDEBUG  / #undef NDEBUG 并重新 #include <cassert>
 
 使用C++自动单元测试工具
 
