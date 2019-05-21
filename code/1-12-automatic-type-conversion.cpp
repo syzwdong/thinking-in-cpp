@@ -21,9 +21,9 @@ public:
     operator C(){ return C(); }
 };
 
-void f(C){}
-void g(C){}
-void g(D){}
+void f(C){ }
+void g(C){ }
+void g(D){ }
 
 int main()
 {

@@ -31,7 +31,7 @@ A tmp(left.val + right.val);
 return tmp;
 因为前置只有一个构造函数的开销
 
-编译器会自动创建operator=
+编译器会自动创建 operator=
 
 自动类型转换
 1-12-automatic-type-conversion.cpp
