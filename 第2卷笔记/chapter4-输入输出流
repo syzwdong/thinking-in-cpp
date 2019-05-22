@@ -1,0 +1,104 @@
+为自己的类定义插入符 << 和提取符 >>
+1、第一个参数定义成流的非const引用
+2、执行向/从流中插入/提取数据的操作
+3、返回流的引用
+
+ostream& operator<<(ostream& os, const Date& d){
+    char fillc = os.fill('0');
+    os << setw(2) << d.getMonth() << '-'
+       << setw(2) << d.getDay() << '-'
+       << setw(4) << d.getYear();
+    return os;
+}
+
+默认情况下格式化输入使用空格作为界定符
+
+cin.get() 参数：指向字符缓冲区的指针，缓冲区大小，结束字符(默认是'\n') 不提取界定符，当再次调用遇到同一个界定符，函数立即返回而不提取输入
+cin.getline() 参数同上，提取界定符，但同样不会把它存储在结果缓冲区中 
+getline() 全局函数 前两个参数是输入流和string,默认界定符是'\n'
+string str;
+getline(cin, str);
+
+测试流状态的标记位
+badbit (物理上的)致命错误，流不能继续使用
+eofbit 输入结束
+failbit I/O操作失败，主要是读非法数据，如读数字时遇到字母，流可以继续使用
+goodbit 没有错误发生，但也没有结束输入 
+
+int i;
+while(cin >> i);
+读到结尾 good()返回false
+
+ifstream 创建输入文件对象
+ofstream 创建输出文件对象
+fstream 创建输入输出文件对象
+
+每个输入输出流对象包含一个指向streambuf的指针
+ifstream in("txt");
+cout << in.rdbuf();
+
+在输入输出流中定位
+使用称为streampos的流指针进行绝对流位置定位 tellp() tellg()返回一个streampos p表示写指针 g表示读指针
+相对定位 seekp() seekg()
+
+字符串输入输出流
+<sstream> istringstream ostringstream stringstream
+stringstream s;
+string str = s.str()
+
+输出流的格式化
+
+格式化标志
+io.setf() io.unsetf()
+ios::skipws 跳过空格(输入流的默认情况)
+ios::showbase 整数的基数
+ios::showpoint 显示浮点数的小数点并截断后面的0
+ios::uppercase 十六进制时大写A-F， 科学计数法大写E
+ios::showpos 正数显示+号
+ios::unitbuf 每次插入后刷新流
+
+格式化域
+----------------------
+ios::basefield
+ios::dec 十进制
+ios::hex 十六进制
+ios::oct 八进制
+----------------------
+ios::floatfield
+ios::scientific 科学计数法
+ios::fixed 小数点后数字的位数
+----------------------
+ios::adjustfield
+ios::left 左对齐
+ios::right 右对齐
+ios::internal 正负号左对齐，数值右对齐
+
+宽度、填充和精度设置
+int ios::width() 返回当前宽度值
+int ios::width(int n) 设定宽度，返回之前的宽度值
+int ios::fill() 返回当前填充字符
+int ios::fill(int n) 设定填充字符，返回之前的填充字符
+int ios::precision() 返回当前浮点数精度，默认6位
+int ios::precision(int n) 设定精度值，返回之前的精度值
+width() 只设定输出字符的最小数目，若设定的宽度值小于输出的字符数目并不会截断，每次io会重置width为0
+
+操纵算子
+<iostream>
+cout << endl;
+cout << flush;
+cout << hex << "0x" << i;
+cin >> ws; 去掉空格
+<iomanip>
+setfill(char)
+setw(int)
+setprecision(int)
+setiosflags(fmtflags)
+resetiosflags(fmtflags)
+setbase(base)
+
+创建操纵算子
+不带参数的操纵算子
+ostream& nl(ostream& os){
+    return os << '\n';
+}
+仅输出'\n',不刷新流
