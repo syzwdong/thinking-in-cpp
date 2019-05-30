@@ -1,0 +1,58 @@
+无类型模板参数
+一个无类型模板参数必须是一个编译时所知的整数值
+template<class T, size_t N>
+
+默认模板参数
+在类模板中，可以为模板参数提供默认参数
+也可以为所有参数提供默认值，当声明一个实例时必须使用一对<>
+
+模板类型的模板参数
+template<class T, template<class> class Seq>
+
+typename
+当模板中出现一个标识符时，若编译器可以在把这个标识符当做一个类型，
+或把他当作一个除类型之外的其他元素之间进行选择的话，编译器的默认行为不会认为标识符名称是一个类型
+因此必须对嵌套的名称使用typename关键字进行说明(除了在构造函数的初始化列表中，这时它不必要出现也不允许出现)
+1、创建一个新类型
+typename Seq<T>::iterator It;
+产生一个名为It的变量，该变量被声明为Seq<T>::iterator类型，若要创建一个新类型名，应该用typedef
+typedef typename Seq<T>::iterator It;
+2、用typename替代class
+
+2-5-from-to-string.cpp
+
+成员模板函数不能被声明为virtual类型
+
+函数模板的半有序
+如果在一组重载的函数模板中没有“特化程度最高”的模板，则会出现二义性，编译器将会报错
+
+模板特化
+显示特化
+template<typename T> const T& min(const T& a, const T& b){
+    return (a < b) ? a : b;
+}
+template<> const char* const& min<const char*>(const char* const& a, const char* const& b){
+    return (strcmp(a, b) < 0) ? a : b;
+}
+显示特化的类 vector<bool>
+
+类模板的半特化
+在模板特化的某些方法中至少还有一个方法，其模板参数是“开放的”
+类模板的半有序
+选择“特化程序最高”的模版
+
+限定名
+Class::f();
+a.f();
+p->f();
+
+关联参数查找 ADL
+string s("");
+std::cout << s << std::endl;
+=>
+std::opertor<<(std::opertor<<(std::cout,s),std::endl);
+在第一个函数调用std::opertor<<(std::cout,s)；时，由于初始名称空间并没有这个函数声明，
+编译器注意到这个函数的第一个参数std::cout在名称空间std中，因此就把这个名称空间添加到作用域列表中，
+以此来寻找一个能完美匹配 opertor<< 的独一无二的函数
+若要避免ADL,可以将函数名称置于一对圆括号中
+(f)(x,y);
