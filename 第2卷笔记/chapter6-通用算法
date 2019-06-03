@@ -1,0 +1,131 @@
+copy()
+remove_copy_if()
+replace_copy_if()
+replace_if()
+
+2-6-algorithm.cpp
+
+函数对象
+生成器 没有参数返回任意类型的函数对象
+一元函数 一个参数，返回任意类型(包括void)的函数对象
+二元函数 两个参数，返回任意类型(包括void)的函数对象
+一元判定函数 返回bool的一元函数
+二元判定函数 返回bool的二元函数
+
+严格弱序 !(a<b || b<a) 广义相等
+
+函数对象适配器
+bind1st()
+bind2nd()
+not1()
+ptr_fun()
+mem_fun()
+mem_fun_ref()
+
+2-6-adaptor.cpp
+
+迭代器类型
+只读迭代器
+只写迭代器
+前向迭代器
+双向迭代器
+随机迭代器
+
+algorithm 
+
+1、填充和生成 2-6-algorithm2.cpp
+fill()
+fill_n()
+generate()
+generate_n()
+
+2、计数 2-6-algorithm3.cpp
+count()
+count_if()
+
+3、操作序列 2-6-algorithm4.cpp
+copy()
+copy_backward()
+reverse()
+reverse_copy()
+swap_ranges()
+rotate()
+rotate_copy()
+next_permutation()
+prev_permutation()
+random_shuffle()
+partition()
+stable_partition()
+
+4、查找和替换 2-6-algorithm5.cpp
+find()
+find_if()
+adjacent_find()
+find_first_of()
+search()
+find_end()
+search_n()
+min_element()
+max_element()
+replace()
+replace_if()
+replace_copy()
+replace_copy_if()
+
+5、比较范围 2-6-algorithm6.cpp
+equal()
+lexicographical_complare()
+mismatch()
+
+6、删除 2-6-algorithm7.cpp
+remove()
+remove_if()
+remove_copy()
+remove_copy_if()
+unique()
+unique_copy()
+
+7、对已排序的序列进行排序和运算 2-6-algorithm8.cpp
+sort()
+stable_sort()
+partial_sort()
+partial_sort_copy()
+nth_element()
+binary_search()
+lower_bound()
+upper_bound()
+equal_range()
+merge()
+inplace_merge()
+includes()
+set_union()
+set_intersection()
+set_difference()
+set_symmetric_difference()
+
+8、堆 2-6-algorithm9.cpp
+make_heap()
+push_heap()
+pop_heap()
+sort_heap()
+
+9、遍历 2-6-algorithm10.cpp
+for_each()
+transform()
+
+10、数值 2-6-algorithm11.cpp
+accumulate()
+inner_product()
+partial_sum()
+adjacent_difference()
+
+11、其它 2-6-algorithm12.cpp
+make_pair()
+distance()
+back_inserter()
+front_inserter()
+inserter()
+min()
+max()
+swap()
+iter_swap()
