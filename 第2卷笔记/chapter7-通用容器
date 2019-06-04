@@ -1,0 +1,32 @@
+vector 向量
+1、已分配存储区溢出的代价
+分配一块新的、更大的存储区
+将旧存储区中的对象拷贝到新开辟的存储区中去
+销毁旧存储区中的所有对象
+释放旧存储区的内存
+导致迭代器无效
+2、插入和删除元素
+最有效的方式，开始用reserve()分配内存，仅在后端插入和删除
+
+deque 双端队列
+典型实现是利用多个连续的存储块，同时在一个映射结构中保持对这些块及其顺序的跟踪
+向两端插入和删除的开销很小
+在不确定容量情况下，使用deque往往更高效
+
+list 链表
+list::sort() list::reverse() 等
+添加元素时迭代器不会失效
+2-7-list.cpp
+
+set 集合
+平衡二叉树
+
+容器适配器
+stack 栈 底层默认deque
+queue 队列 底层默认deque
+priority_queue 优先级队列 底层默认vector
+
+bitset<n> 多个unsigned long 大小
+vector<bool> 封装在整形数组中
+2-7-bitset.cpp
+2-7-bool.cpp
