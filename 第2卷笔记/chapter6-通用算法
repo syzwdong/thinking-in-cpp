@@ -122,6 +122,7 @@ adjacent_difference()
 11、其它 2-6-algorithm12.cpp
 make_pair()
 distance()
+advance()
 back_inserter()
 front_inserter()
 inserter()
