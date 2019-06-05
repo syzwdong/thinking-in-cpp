@@ -1,0 +1,16 @@
+RTTI 运行时类型识别 runtime type identification
+
+运行时类型转换
+dynamic_cast
+如果想要安全地进行向下类型转换， dynamic_cast 要求使用的目标对象的类型是多态的
+用引用而非指针也可以使用 dynamic_cast， 失败时捕获bad_cast异常(<typeinfo>)
+
+typeid
+返回type_info类的对象
+
+typeid操作符始终产生指向静态的type_info型对象的引用，它描述该对象的动态类型
+typeid操作符不能给出中间层对象的类型信息
+typeid不能与void *一起工作
+dynamic_cast<void *> 总是给出完全的对象而不是一个子对象的地址
+
+2-8-rtti.cpp
