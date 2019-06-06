@@ -1,0 +1,44 @@
+ZThread
+Runnable 提供一个公共接口来执行任意的任务 子类继承Runnabel 覆盖其run()方法
+Thread 构造函数接受一个Runnabel* 完成初始化并调用run()
+创建了一个Thread对象的时候，相关联的线程就会在线程处理系统内注册，并保持其处于活动状态
+即使基于栈的Thread对象被丢弃，线程本身也会继续处于活动状态直到其相关联的任务完成
+ThreadExecutor 执行器 简化编码，自动创建Thread,无需显示创建
+PoolExecutor 产生有限的线程
+ConcurrentExecutor 产生固定一个线程
+SynchronousExecutor 同一时刻只运行一个任务，它自己不创建或管理线程，它使用提交任务的线程
+ZThread中异常不能夸线程传播
+
+ZThread::Thread::yield() 让步
+Zthread::Thread::sleep(100) 休眠100毫秒 (最少休眠100毫秒)
+setPriority() getPriority() 优先权
+
+保证对象的存在 引用计数 任务一直维持到该任务的引用计数归零才能删除该任务，所以任务必须总是在堆上创建
+
+防止两个线程在临界期内访问同一资源 加锁
+Mutex lock; lock.acquire(); lock.release();
+保护 Guard Guard对象在栈上创建，对象销毁时自动调用锁的release()
+
+封装器在类一级的粒度上加锁
+用一个互斥锁保护一个类的所有成员函数并不能自动保证那个类是线程安全的
+
+线程本地存储
+ThreadLocal 为共享变量产生多个不同的存储单元
+
+防止输入/输出流冲突
+将信息写入一个ostringstream 并加互斥锁，防止多个线程同时写入数据
+
+Thread::interrupt() 终止一个阻塞的线程
+Thread::interrupted() 重新设置中断状态
+
+Condition 使用互斥锁并允许任务挂起
+wait() 释放Mutex 挂起线程
+signal() broadcast() 唤醒线程
+
+死锁四个条件
+互斥
+占有一个资源并等待另一个资源
+非抢占
+循环等待
+
+线程切换约100条指令，进程切换约上千条指令
